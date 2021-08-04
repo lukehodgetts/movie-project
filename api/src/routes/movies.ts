@@ -70,6 +70,12 @@ router.get("/", async (req, res) => {
 });
 
 //update one
-router.patch("/:id", (req, res) => {});
+router.patch("/:id", async (req, res) => {
+  const foundMovie = await Movie.findById(req.params.id);
+  if (!foundMovie) {
+    return res.status(404).send();
+  }
+  foundMovie.favourited = !foundMovie.favourited;
+});
 
 export default router;

@@ -17,17 +17,19 @@ export const Header = styled.div`
   background-color: #ffffff;
   border: 2px solid #00000f;
   border-radius: 12px;
-  justify-content: center;
-  display: flex;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  align-items: center;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  margin: 0 auto;
+`;
 
 export const MovieContainer = styled.div`
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 20% 50% 30%;
+  grid-template-columns: 20% 60% 25%;
   margin: 10px 0px 0px 0px;
 `;
 
@@ -46,6 +48,9 @@ export const Stat = styled.h2<GridProps>`
 `;
 
 export const Poster = styled.img<GridProps>`
+  /* margin-left: auto; */
+  /* float: right; */
+
   grid-column-start: ${(props) => props.gridColumnStart};
   grid-column-end: ${(props) => props.gridColumnEnd};
   grid-row-start: ${(props) => props.gridRowStart};

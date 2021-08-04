@@ -4,6 +4,9 @@ import moment from "moment";
 import { useParams } from "react-router-dom";
 import { Movie } from "../Homepage";
 import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as outlineStar } from "@fortawesome/free-regular-svg-icons";
 
 import {
   Wrapper,
@@ -43,17 +46,31 @@ const MoviePage = () => {
     },
   });
 
+  const [] = useAxios({
+    url: `http://localhost:8080/movies/${id}`,
+    method: "PATCH",
+    data: {
+      id,
+    },
+  });
+
   console.log(id);
-  console.log(movie?.imdb.id);
+  console.log(movie);
   console.log(movieDetails);
 
   if (loading || loadingMovieDetails) return <h1>...</h1>;
   if (error || movieDetailsError || !movie) return <h1>oh no</h1>;
 
+  const toggleFavourite = () => {
+
+  }
+
   return (
     <Wrapper>
       <Header>
+        <Title>hi</Title>
         <Title>{movie.title}</Title>
+        <FontAwesomeIcon icon={movie.favourited ? solidStar : outlineStar} size="3x" pull="left" color="gold" onClick={toggleFavourite}/>
       </Header>
       <MovieContainer>
         <StatHeader>Directed by</StatHeader>

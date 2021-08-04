@@ -27,6 +27,7 @@ export interface Movie {
     rating: number;
     id: string;
   };
+  favourited?: boolean;
 }
 
 function Homepage() {

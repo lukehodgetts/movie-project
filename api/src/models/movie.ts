@@ -15,6 +15,7 @@ export interface IMovie extends Document {
   imdb: Object;
   type: String;
   tomatoes: Object;
+  favourited: Boolean
 }
 
 const movieSchema = new mongoose.Schema({
@@ -73,6 +74,10 @@ const movieSchema = new mongoose.Schema({
   tomatoes: {
     type: Object,
     required: true,
+  },
+  favourited: {
+    type: Boolean,
+    required: false,
   },
 });
 
