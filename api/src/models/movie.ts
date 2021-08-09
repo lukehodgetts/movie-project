@@ -39,7 +39,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  fullPlot: {
+  fullplot: {
     type: String,
     required: true,
   },
@@ -57,7 +57,7 @@ const movieSchema = new mongoose.Schema({
   },
   rating: {
     type: String,
-    required: true,
+    required: false,
   },
   awards: {
     type: Object,
@@ -73,7 +73,7 @@ const movieSchema = new mongoose.Schema({
   },
   tomatoes: {
     type: Object,
-    required: true,
+    required: false,
   },
   favourited: {
     type: Boolean,

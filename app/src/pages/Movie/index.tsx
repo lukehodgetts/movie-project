@@ -28,7 +28,7 @@ const MoviePage = () => {
   const location = useLocation();
   console.log(location.pathname);
 
-  const [{ data: movie, loading, error }] = useAxios<Movie>(
+  const [{ data: movie, loading, error }, refetch] = useAxios<Movie>(
     `http://localhost:8080/movies/${id}`
   );
 
@@ -46,7 +46,7 @@ const MoviePage = () => {
     },
   });
 
-  const [] = useAxios({
+  const [, refetchFavourite] = useAxios({
     url: `http://localhost:8080/movies/${id}`,
     method: "PATCH",
     data: {
@@ -61,16 +61,23 @@ const MoviePage = () => {
   if (loading || loadingMovieDetails) return <h1>...</h1>;
   if (error || movieDetailsError || !movie) return <h1>oh no</h1>;
 
-  const toggleFavourite = () => {
-
-  }
+  const toggleFavourite =  async () => {
+    await refetchFavourite();
+    refetch()
+  };
 
   return (
     <Wrapper>
       <Header>
         <Title>hi</Title>
         <Title>{movie.title}</Title>
-        <FontAwesomeIcon icon={movie.favourited ? solidStar : outlineStar} size="3x" pull="left" color="gold" onClick={toggleFavourite}/>
+        <FontAwesomeIcon
+          icon={movie.favourited ? solidStar : outlineStar}
+          size="3x"
+          pull="left"
+          color="gold"
+          onClick={toggleFavourite}
+        />
       </Header>
       <MovieContainer>
         <StatHeader>Directed by</StatHeader>
